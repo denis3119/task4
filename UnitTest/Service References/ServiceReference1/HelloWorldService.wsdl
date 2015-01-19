@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://example/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="HelloWorldService" targetNamespace="http://example/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:9000/HelloWorld?xsd=1" namespace="http://example/" />
+    </xsd:schema>
+  </types>
+  <message name="CompileRun">
+    <part name="parameters" element="tns:CompileRun" />
+  </message>
+  <message name="CompileRunResponse">
+    <part name="parameters" element="tns:CompileRunResponse" />
+  </message>
+  <message name="ClassNotFoundException">
+    <part name="fault" element="tns:ClassNotFoundException" />
+  </message>
+  <message name="MalformedURLException">
+    <part name="fault" element="tns:MalformedURLException" />
+  </message>
+  <message name="InstantiationException">
+    <part name="fault" element="tns:InstantiationException" />
+  </message>
+  <message name="IllegalAccessException">
+    <part name="fault" element="tns:IllegalAccessException" />
+  </message>
+  <message name="FileNotFoundException">
+    <part name="fault" element="tns:FileNotFoundException" />
+  </message>
+  <portType name="HelloWorld">
+    <operation name="CompileRun">
+      <input wsam:Action="http://example/HelloWorld/CompileRunRequest" message="tns:CompileRun" />
+      <output wsam:Action="http://example/HelloWorld/CompileRunResponse" message="tns:CompileRunResponse" />
+      <fault wsam:Action="http://example/HelloWorld/CompileRun/Fault/ClassNotFoundException" name="ClassNotFoundException" message="tns:ClassNotFoundException" />
+      <fault wsam:Action="http://example/HelloWorld/CompileRun/Fault/MalformedURLException" name="MalformedURLException" message="tns:MalformedURLException" />
+      <fault wsam:Action="http://example/HelloWorld/CompileRun/Fault/InstantiationException" name="InstantiationException" message="tns:InstantiationException" />
+      <fault wsam:Action="http://example/HelloWorld/CompileRun/Fault/IllegalAccessException" name="IllegalAccessException" message="tns:IllegalAccessException" />
+      <fault wsam:Action="http://example/HelloWorld/CompileRun/Fault/FileNotFoundException" name="FileNotFoundException" message="tns:FileNotFoundException" />
+    </operation>
+  </portType>
+  <binding name="HelloWorldPortBinding" type="tns:HelloWorld">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="CompileRun">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="ClassNotFoundException">
+        <soap:fault use="literal" name="ClassNotFoundException" namespace="" />
+      </fault>
+      <fault name="MalformedURLException">
+        <soap:fault use="literal" name="MalformedURLException" namespace="" />
+      </fault>
+      <fault name="InstantiationException">
+        <soap:fault use="literal" name="InstantiationException" namespace="" />
+      </fault>
+      <fault name="IllegalAccessException">
+        <soap:fault use="literal" name="IllegalAccessException" namespace="" />
+      </fault>
+      <fault name="FileNotFoundException">
+        <soap:fault use="literal" name="FileNotFoundException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="HelloWorldService">
+    <port name="HelloWorldPort" binding="tns:HelloWorldPortBinding">
+      <soap:address location="http://localhost:9000/HelloWorld" />
+    </port>
+  </service>
+</definitions>

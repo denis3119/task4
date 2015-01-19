@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://example/" targetNamespace="http://example/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ClassNotFoundException" type="tns:ClassNotFoundException" />
+  <xs:element name="CompileRun" type="tns:CompileRun" />
+  <xs:element name="CompileRunResponse" type="tns:CompileRunResponse" />
+  <xs:element name="FileNotFoundException" type="tns:FileNotFoundException" />
+  <xs:element name="IllegalAccessException" type="tns:IllegalAccessException" />
+  <xs:element name="InstantiationException" type="tns:InstantiationException" />
+  <xs:element name="MalformedURLException" type="tns:MalformedURLException" />
+  <xs:complexType name="CompileRun">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompileRunResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClassNotFoundException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exception" type="tns:throwable" />
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="stackTrace" nillable="true" type="tns:stackTraceElement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stackTraceElement" final="extension restriction">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="MalformedURLException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InstantiationException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IllegalAccessException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FileNotFoundException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
